@@ -14,14 +14,6 @@ CREATE TABLE Convenios (
     email VARCHAR(100)
 );
 
-
--- Tabela de especialidades médicas
-CREATE TABLE Especialidades (
-    idEspecialidade INT AUTO_INCREMENT PRIMARY KEY,
-    nome VARCHAR(100) NOT NULL,
-    descricao TEXT
-);
-
 -- Tabela de médicos
 CREATE TABLE Medicos (
     idMedico INT AUTO_INCREMENT PRIMARY KEY,
@@ -29,8 +21,7 @@ CREATE TABLE Medicos (
     crm VARCHAR(20) NOT NULL UNIQUE,
     telefone VARCHAR(20),
     email VARCHAR(100),
-    idEspecialidade INT,
-    FOREIGN KEY (idEspecialidade) REFERENCES Especialidades(idEspecialidade) 
+    idEspecialidade INT, 
     ON DELETE SET NULL -- Caso uma especialidade seja deletada, o médico fica com idEspecialidade NULL
 );
 
@@ -124,12 +115,6 @@ CREATE TABLE Usuarios (
 INSERT INTO Convenios (nome, cobertura, telefone, email) VALUES
 ('Unimed', 'Consultas, Exames, Cirurgias', '11-99999-1111', 'contato@unimed.com'),
 ('Amil', 'Consultas e Exames', '11-98888-2222', 'suporte@amil.com');
-
--- Inserir especialidades
-INSERT INTO Especialidades (nome, descricao) VALUES
-('Cardiologia', 'Tratamento do coração'),
-('Ortopedia', 'Tratamento do sistema locomotor'),
-('Pediatria', 'Atendimento de crianças');
 
 -- Inserir médicos
 INSERT INTO Medicos (nome, crm, telefone, email, idEspecialidade) VALUES
